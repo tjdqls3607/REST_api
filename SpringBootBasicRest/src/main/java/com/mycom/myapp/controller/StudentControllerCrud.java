@@ -1,5 +1,7 @@
 package com.mycom.myapp.controller;
 
+import com.mycom.myapp.dto.StudentDto;
+import com.mycom.myapp.dto.StudentResultDto;
 import com.mycom.myapp.entity.Student;
 import com.mycom.myapp.service.StudentServiceCrud;
 import lombok.RequiredArgsConstructor;
@@ -8,45 +10,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-// return type이 Student(Entity)인데, StudentDto를 사용하는게 바람직. 지금은 연습용으로 단순화한것.
+// REST를 적용하면 /api/v1
+// get list : /students
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/students")
+@RequestMapping("/api")
 public class StudentControllerCrud {
 	private final StudentServiceCrud studentServiceCrud;
 	
-	@GetMapping("/list")
-	public List<Student> listStudent(){
+	@GetMapping("/students") // Get: list
+	public StudentResultDto listStudent(){
 		return studentServiceCrud.listStudent();
 	}
 	
-	@GetMapping("/detail/{id}")
-	public Optional<Student> detailStudent(@PathVariable("id") Integer id) {
+	@GetMapping("/students/{id}")
+	public StudentResultDto detailStudent(@PathVariable("id") Integer id) {
 	    return studentServiceCrud.detailStudent(id);
 	}
 
-	@PostMapping("/insert")
-	public Student insertStudent(Student student) {
-	    return studentServiceCrud.insertStudent(student);
+	@PostMapping("/students") // Post: insert
+	public StudentResultDto insertStudent(StudentDto studentDto) {
+	    return studentServiceCrud.insertStudent(studentDto);
 	}
 	
-	@PostMapping("/update")
-	public Optional<Student> updateStudent(Student student) {
-	    return studentServiceCrud.updateStudent(student);
+	@PutMapping("/students/{id}") // Put: update
+	public StudentResultDto  updateStudent(@PathVariable("id") Integer id, StudentDto studentDto) {
+	    studentDto.setId(id);
+		return studentServiceCrud.updateStudent(studentDto);
 	}
 	
-	@GetMapping("/delete/{id}")
-	public void deleteStudent(@PathVariable("id") Integer id) {
-	    studentServiceCrud.deleteStudent(id);
+	@DeleteMapping("/students/{id}")
+	public StudentResultDto deleteStudent(@PathVariable("id") Integer id) {
+	    return studentServiceCrud.deleteStudent(id);
 	}
 
-	@GetMapping("/count")
-	public long countStudent() {
+	@GetMapping("/students/count")
+	public StudentResultDto countStudent() {
 		return studentServiceCrud.countStudent();
 	}
 	
-	@GetMapping("/page")
-	public List<Student> listStudent(@RequestParam("pageNumber") Integer pageNumber,
+	@GetMapping("/students/page")
+	public StudentResultDto listStudent(@RequestParam("pageNumber") Integer pageNumber,
 									@RequestParam("pageSize") Integer pageSize) {
 		return studentServiceCrud.listStudent(pageNumber, pageSize);
 	}
