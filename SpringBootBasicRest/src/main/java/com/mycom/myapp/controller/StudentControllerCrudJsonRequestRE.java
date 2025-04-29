@@ -24,8 +24,16 @@ public class StudentControllerCrudJsonRequestRE {
 	public ResponseEntity<StudentResultDto> listStudent(){
 		StudentResultDto  studentResultDto = studentServiceCrud.listStudent();
 		// ResponseEntity + ResultDto 함께 사용 의 #1
-		return new ResponseEntity<StudentResultDto>(studentResultDto, HttpStatus.OK);
+//		return new ResponseEntity<StudentResultDto>(studentResultDto, HttpStatus.OK);
+		// 500 에러로 status 코드를 보내도, body 에 데이터가 있으면 브라우저에서 예외 처리 X
+//		return new ResponseEntity<StudentResultDto>(studentResultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		// 500 에러로 status 코드를 보내도, body 에 데이터 X
+//		return new ResponseEntity<StudentResultDto>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		// 200 OK로 status 코드를 보내도 body 에 데이터 X -> try-catch 에서 예외 발생
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
+
 	
 	@GetMapping("/students/{id}")
 	public StudentResultDto detailStudent(@PathVariable("id") Integer id) {

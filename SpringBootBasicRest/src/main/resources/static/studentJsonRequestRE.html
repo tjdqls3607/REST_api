@@ -46,6 +46,17 @@
     }
 
     async function listStudent(){
+        // 이전data.result 를 이용한 코드
+        // let response = await fetch('/api/json/re/students');
+        // let data = await response.json();
+        // console.log(data)
+        // // data 가 정상적으로 내려오면 data의 result를 보고 처리가 가능
+        // if (data.result == "success") {
+        //     makeListHtml(data.studentList);
+        // }else if (data.result == "fail") {
+        //     alert("목록 조회중 오류 발생")
+        // }
+
 
         try{
             let response = await fetch('/api/json/re/students');
