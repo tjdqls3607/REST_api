@@ -25,13 +25,28 @@ public class StudentControllerCrudJsonRequestRE {
 		StudentResultDto  studentResultDto = studentServiceCrud.listStudent();
 		// ResponseEntity + ResultDto 함께 사용 의 #1
 //		return new ResponseEntity<StudentResultDto>(studentResultDto, HttpStatus.OK);
+
 		// 500 에러로 status 코드를 보내도, body 에 데이터가 있으면 브라우저에서 예외 처리 X
 //		return new ResponseEntity<StudentResultDto>(studentResultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+
 		// 500 에러로 status 코드를 보내도, body 에 데이터 X
 //		return new ResponseEntity<StudentResultDto>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 
 		// 200 OK로 status 코드를 보내도 body 에 데이터 X -> try-catch 에서 예외 발생
-		return new ResponseEntity<>(null, HttpStatus.OK);
+//		return new ResponseEntity<>(null, HttpStatus.OK);
+
+		// ResponseEntity 객체를 생성, 리턴하는 다른 표현
+//		return ResponseEntity
+//				.status(HttpStatus.OK)
+//				.body(studentResultDto);
+
+//		return ResponseEntity
+//				.ok()
+//				.body(studentResultDto);
+
+		return ResponseEntity
+				.notFound()
+				.build();	//body() 오류 <- body를 채우면 client 오류 처리 X
 	}
 
 	
