@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 //	1. ResultDto 사용 X, 대신 예외 처리로 오류 파악, 이를 통해서 ResponseEntity 의 응답코드를 결정
 // ResponseEntity + ResultDto 함께 사용
 // 	1. ResultDto 을 client 에게 전달, Client 가 Server 의 작업 결과를 ResultDto 를 통해서 처리
-//	2. ResultDto를 Client 에게 전달 X, 대신 Controller 에서 Server 에서 return 한 ResultDto 객체를 이용해서
+//	2. ResultDto를 Client 에게 전달 , 사용X, 대신 Controller 에서 Server 에서 return 한 ResultDto 객체를 이용해서
 //		ResponseEntity 의 응답코드를 결정
 @RestController
 @RequiredArgsConstructor
