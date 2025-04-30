@@ -35,7 +35,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //  Web cover
 
 // DI 테스트
-@WebMvcTest
+// @WebMvcTest() 은 특정 Controller based Test 를 진행함
+// @WebMvcTest() 에 Controller based Test 를 지정하지 않으면 Service 등 다른 Di 포함되어야 한다.
+// 아래 LoginService 가 예시
+
+@WebMvcTest(UserController.class)
 //@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
@@ -58,8 +62,8 @@ public class Test_DI_2 {
     @MockitoBean
     UserRepository userRepository;
 
-    @MockitoBean
-    LoginService loginService;
+//    @MockitoBean
+//    LoginService loginService;
 
 
     @Test
@@ -102,17 +106,17 @@ public class Test_DI_2 {
         log.debug("TestDi_SessionRequest() 종료");
     }
 
-    // jpa 영역 DI 실패
-    @MockitoBean
-    EntityManager entityManager;
-
-    @Test
-    @Order(4)
-    void TestDi_EntityManager() {
-        log.debug("TestDi_EntityManager() 시작");
-        assertNotNull(entityManager);
-        User user = entityManager.find(User.class, 1);
-        assertNotNull(user);
-        log.debug("TestDi_EntityManager() 종료");
-    }
+//    // jpa 영역 DI 실패
+//    @MockitoBean
+//    EntityManager entityManager;
+//
+//    @Test
+//    @Order(4)
+//    void TestDi_EntityManager() {
+//        log.debug("TestDi_EntityManager() 시작");
+//        assertNotNull(entityManager);
+//        User user = entityManager.find(User.class, 1);
+//        assertNotNull(user);
+//        log.debug("TestDi_EntityManager() 종료");
+//    }
 }
