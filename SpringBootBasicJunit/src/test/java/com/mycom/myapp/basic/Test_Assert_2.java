@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -90,5 +91,24 @@ public class Test_Assert_2 {
         String str2 = new String ("JUnit");
         String str3 = "JUnit";
         assertNotSame(str1, str3, " 두 변수는 다른 객체를 가르킨다");
+    }
+
+    void myFunc() {
+        try {
+            Thread.sleep(2000);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    @Order(8)
+    void testAssertTimeOut() {  // 수행되는 시간 체크
+        assertTimeout(
+                Duration.ofSeconds(1L),
+                () -> {
+                    myFunc();
+                },
+                " myFunc 은 0.5초 이내로 수행되어야 한다."
+        );
     }
 }
