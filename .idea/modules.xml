@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/REST_api.iml" filepath="$PROJECT_DIR$/.idea/REST_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpringBootBasicJunit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SpringBootBasicJunit.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpringBootBasicRest.main.iml" filepath="$PROJECT_DIR$/.idea/modules/SpringBootBasicRest.main.iml" />
     </modules>
   </component>
