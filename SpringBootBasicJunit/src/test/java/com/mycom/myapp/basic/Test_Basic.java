@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 public class Test_Basic {
 
     @Test
-    @Order(2)
+    @Order(5)
     void test1() {
         System.out.println("test1()");
     }
@@ -22,6 +22,15 @@ public class Test_Basic {
     @Order(1)
     void test3() {
         System.out.println("test3()");
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("RuntimeException 예외 발생")
+    void test4() {
+        System.out.println("test4()");
+        String str = null;
+        str.length();
     }
     
     // @beforeAll, @afterAll 는 static
