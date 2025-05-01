@@ -4,6 +4,7 @@ import com.mycom.myapp.dto.StudentDto;
 import com.mycom.myapp.dto.StudentResultDto;
 import com.mycom.myapp.service.StudentServiceCrud;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 // REST를 적용하면 /api/v1
@@ -11,13 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-
-
+@Slf4j
 public class StudentControllerCrud {
 	private final StudentServiceCrud studentServiceCrud;
 
 	@GetMapping("/students") // Get: list
 	public StudentResultDto listStudent(){
+
+		log.debug("listStudent() debug");
+		log.info("listStudent() info");
+		log.warn("listStudent() warn");
+
 		return studentServiceCrud.listStudent();
 	}
 
