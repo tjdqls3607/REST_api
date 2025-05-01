@@ -91,7 +91,7 @@ public class RegisterTest {
 
     @Test
     @Transactional
-    public void registerTest4() throws Exception {
+    public void registerTest4() throws Exception {  // 예외처리 필요함
         this.mockMvc.perform(
                 post("/users/register")
                         .param("name", "홍길동")
